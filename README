@@ -48,13 +48,19 @@ RCWUI v0.1
 
 1.6- Set to www-data user sudo permissions for /var/ossec/bin/manage_agents
 
+
 1.7- Create empty file newagent.tmp in /var/ossec/ and set owner and group to www-data
 
-1.7- Try to access the UI.
 
-     http ://anyhost/rcwui/index3.php
+1.8- En MySQL Create a database bdrcwui e Import schema from bdrcwui.sql 
 
-1.8- Report any problems or suggestions to jrglzt@gmail.com
+1.9- Try to access the UI.
+     http ://anyhost/rcwui/index3.php 
+     user:admin
+     password:admin
+     Remember to change the password
+
+1.10- Report any problems or suggestions to jrglzt@gmail.com
 
 
 #EOF
