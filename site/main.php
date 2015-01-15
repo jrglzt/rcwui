@@ -1,5 +1,5 @@
 <?php
-/* @(#) $Id: main.php,v 1.12 2008/03/03 19:37:26 dcid Exp $ */
+/* @(#) $Id: main.php,v 1.12 2008/03/03 19:38:26 dcid Exp $ */
 
 /* Copyright (C) 2006-2013 Trend Micro
  * All rights reserved.
