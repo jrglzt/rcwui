@@ -1,5 +1,4 @@
-OSSEC Web UI v0.8
-Copyright (c) 2006-2013 Trend Micro Inc.
+RCWUI v0.1
 
 
 1- How to install.
@@ -12,24 +11,17 @@ Copyright (c) 2006-2013 Trend Micro Inc.
 
 1.1- Download the web ui package:
 
-    # wget http://www.ossec.net/files/ui/ossec-wui-0.3.tar.gz
+    $ git clone https://github.com/jrglzt/rcwui
 
 
 1.2- Decompress/untar and move the files to somewhere acessible by
      your web server:
 
-    # tar -zxvf ossec-wui-0.3.tar.gz
-    # mv ossec-wui* /var/www/htdocs/ossec-wui
+   
+    # mv rcwui /var/www/rcwui
 
 
-1.3- Run the setup script (assign username/password...):
-
-    # cd /var/www/htdocs/ossec-wui
-    # ./setup.sh
-    ...
-
-
-1.4- Add your web server user (apache, www-data or nobody) to the ossec group:
+1.3- Add your web server user (apache, www-data or nobody) to the ossec group:
 
     # vi /etc/group
     ..
@@ -38,7 +30,7 @@ Copyright (c) 2006-2013 Trend Micro Inc.
     To (if your web server user is www-data):
         ossec:x:1002:www-data
 
-1.5- Fix the permissions for the tmp directory of your OSSEC installation (e.g., /var/ossec/tmp) and restart Apache
+1.4- Fix the permissions for the tmp directory of your OSSEC installation (e.g., /var/ossec/tmp) and restart Apache
 
     # chmod 770 tmp/
     # chgrp www-data tmp/
@@ -54,12 +46,15 @@ Copyright (c) 2006-2013 Trend Micro Inc.
      max_input_time = 180
      memory_limit = 30M
 
+1.6- Set to www-data user sudo permissions for /var/ossec/bin/manage_agents
 
-1.6- Try to access the UI.
+1.7- Create empty file newagent.tmp in /var/ossec/ and set owner and group to www-data
 
-     http ://anyhost/ossec-wui/
+1.7- Try to access the UI.
 
-1.7- Report any problems or suggestions to our mailing list.
+     http ://anyhost/rcwui/index3.php
+
+1.8- Report any problems or suggestions to jrglzt@gmail.com
 
 
 #EOF
