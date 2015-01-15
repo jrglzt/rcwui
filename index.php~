@@ -168,7 +168,7 @@ else
                 }
 			   break;
 			case "ag":
-                if(!include("site/agents.php"))
+                if(!include("site/changepass.php"))
                 {
                     echo "$int_error";
                     return(1);

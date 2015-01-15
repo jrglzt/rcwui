@@ -1,0 +1,25 @@
+<!-- dashboard UI header -->
+
+<center>
+<div id="header">
+
+  <div id="headertitle">
+  <table>
+  <tr>
+    <td>
+     
+      <img width="135" height="67" src="/ossec/img/rcwui.png" title="Go to RCWUI in GitHub" alt="Go to RCWUI in GitHub"/></a>
+    </td>
+
+    <td>
+      <img width="107" height="38" src="/ossec/img/rcwui2.png"/><br>&nbsp;&nbsp; <i>Version 0.1</i>
+    </td>
+  </tr>
+  </table>
+  </div>
+
+ 
+</div>
+</center>
+
+<!-- END OF HEADER -->
