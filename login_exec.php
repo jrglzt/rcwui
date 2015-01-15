@@ -1,18 +1,28 @@
 <?php
-	//Start session
+/* @(#) $Id: login_exec.php,v 0.1 2014/12/26 12:34:21 */
+
+/* Autor: Jorge Alzate
+ * email: jrglzt@gmail.com
+ * 
+ *
+ * This program is a free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public
+ * License (version 3) as published by the FSF - Free Software
+ * Foundation
+ */	
 	session_start();
- 
-	//Include database connection details
-	
 	require_once('lib/connection.php');
  
-	//Array to store validation errors
+	/*Array para almacena los mensajes de error*/
 	$errmsg_arr = array();
  
-	//Validation error flag
+	
 	$errflag = false;
  
-	//Function to sanitize values received from the form. Prevents SQL injection
+	/*Función para prevenir SQL Injection
+	 *@param $str cadena para ser evaluada
+	 *@return String
+	 */
 	function clean($str) {
 		$str = @trim($str);
 		if(get_magic_quotes_gpc()) {
@@ -21,11 +31,11 @@
 		return mysql_real_escape_string($str);
 	}
  
-	//Sanitize the POST values
+	
 	$username = clean($_POST['username']);
 	$password = clean($_POST['password']);
  
-	//Input Validations
+	//*Validaciones de entrada*/
 	if($username == '') {
 		$errmsg_arr[] = 'Username missing';
 		$errflag = true;
@@ -35,7 +45,7 @@
 		$errflag = true;
 	}
  
-	//If there are input validations, redirect back to the login form
+	
 	if($errflag) {
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 		session_write_close();
@@ -43,14 +53,14 @@
 		exit();
 	}
  
-	//Create query
+	/*Creación de consulta*/
 	$qry="SELECT * FROM rcwui_user WHERE login='$username' AND  password like binary '$password'";
 	$result=mysql_query($qry);
  
-	//Check whether the query was successful or not
+	/*Verificando la ejecución de la consulta*/
 	if($result) {
 		if(mysql_num_rows($result) > 0) {
-			//Login Successful
+			/*Autenticación OK*/
 			session_regenerate_id();
 			$member = mysql_fetch_assoc($result);
 			
@@ -60,7 +70,7 @@
 			header("location: index.php");
 			exit();
 		}else {
-			//Login failed
+			/*La autenticación ha fallado*/
 			$errmsg_arr[] = 'user name and password not found';
 			$errflag = true;
 			if($errflag) {

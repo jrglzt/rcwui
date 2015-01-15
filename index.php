@@ -1,25 +1,25 @@
 <?php
 
 	session_start();
-	//Check whether the session variable SESS_USER is present or not
+	/*Verificando cuando las variables de sesión esten o no presentes*/
 	if(!isset($_SESSION['SESS_USER']) || (trim($_SESSION['SESS_USER']) != '')) 	
 	
 {	
 
 
-/* Update the include path so that all library files can be
- * easily found.
+/* Actualiza la ruta para que todos los archivos puedan
+ * ser facilmente ubicados
  */
 ini_set('include_path', ini_get('include_path').':'.dirname(__FILE__).'/lib');
 
 
-/* Getting user argument (page) */
+/* Obteniendo el argumento de la página */
 $USER_f = false;
 if(isset($_GET['f']))
 {
 	$USER_f = $_GET['f'];
 }
-/* If nothing is set, default to the main page. */
+/* Si no existe la variable f será asignado el argumento para llevar a la página principal */
 else
 {
 	$USER_f = "m";
@@ -36,7 +36,7 @@ else
 		<meta name="description" content="OSSEC Web Interface" />
         <?php
         
-        /* If we are in the main page, refresh the results every 90 seconds.*/
+        /* Si se encuentra en la página principal se debe actualizar cada 90 segundos.*/
         if($USER_f == "m")
         {
             echo '<meta http-equiv="refresh" content="90" />';
@@ -60,11 +60,11 @@ else
 
 
 <?php 
-    /* Defining the error messages */
+    /* Definiendo mensajes de error */
     $int_error="Internal error. Try again later.\n <br />";
     $include_error="Unable to include file:";
     
-    /* Including the header */
+    /* incluyendo la cabecera */
     if(!(include("site/header.html")))
     {
         echo "$include_error 'site/header.html'.\n<br />";
@@ -90,7 +90,7 @@ else
                           "lib/os_lib_stats.php",
                           "lib/os_lib_syscheck.php",
                           "lib/os_lib_firewall.php",
-                          "lib/os_lib_alerts.php"); //aqui toca meter los top10
+                          "lib/os_lib_alerts.php"); 
 
             foreach ($array_lib as $mylib)
             {
@@ -114,11 +114,7 @@ else
 			switch ($USER_f) 
             {
 		case "d":
-                /*if(!include("site/dashboard.php"))
-                {
-                    echo "$int_error";
-                    return(1);
-                }*/
+              
 		header('Location: site/dashboard.php');	
 		header('Window-target: _blank');
 		exit;
@@ -203,7 +199,7 @@ else
     </div>
 
 <?php
-    /* Including the footer */
+    /* Incluyendo el pie de página */
     if(!(include("site/footer.html")))
     {
         echo "$include_error 'site/footer.html'.\n<br />";

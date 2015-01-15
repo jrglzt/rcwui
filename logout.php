@@ -1,7 +1,7 @@
 <?php   
-session_start(); //to ensure you are using same session
-session_destroy(); //destroy the session
+session_start(); /*Asegurar que esta usando la misma sesión*/
+session_destroy(); /*Destruye la sesión*/
 session_register_shutdown();
-header("location: index3.php"); //to redirect back to "index.php" after logging out
+header("location: index3.php"); /*Redirecciona hacia la página index3.php despues de cerrar sesión*/
 exit();
 ?>

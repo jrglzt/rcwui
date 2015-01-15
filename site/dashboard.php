@@ -1,4 +1,15 @@
 <?php
+/* @(#) $Id: dashboard.php,v 0.1 2014/11/26 12:34:21 */
+
+/* Autor: Jorge Alzate
+ * email: jrglzt@gmail.com
+ * 
+ *
+ * This program is a free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public
+ * License (version 3) as published by the FSF - Free Software
+ * Foundation
+ */
 session_start();
 ?>
 <html>
@@ -35,53 +46,6 @@ include("headerdashboard.html");
 </style>
 
 <script type="text/javascript">
-
-// function that writes the list order to a cookie
-/*function saveOrder() {
-    $(".column").each(function(index, value){
-        var colid = value.id;
-        var cookieName = "cookie-" + colid;
-        // Get the order for this column.
-        var order = $('#' + colid).sortable("toArray");
-        // For each portlet in the column
-        for ( var i = 0, n = order.length; i < n; i++ ) {
-            // Determine if it is 'opened' or 'closed'
-            var v = $('#' + order[i] ).find('.portlet-content').is(':visible');
-            // Modify the array we're saving to indicate what's open and
-            //  what's not.
-            order[i] = order[i] + ":" + v;
-        }
-        $.cookie(cookieName, order, { path: "/", expiry: new Date(2012, 1, 1)});
-    });
-}
-
-// function that restores the list order from a cookie
-function restoreOrder() {
-    $(".column").each(function(index, value) {
-        var colid = value.id;
-        var cookieName = "cookie-" + colid
-        var cookie = $.cookie(cookieName);
-        if ( cookie == null ) { return; }
-        var IDs = cookie.split(",");
-        for (var i = 0, n = IDs.length; i < n; i++ ) {
-            var toks = IDs[i].split(":");
-            if ( toks.length != 2 ) {
-                continue;
-            }
-            var portletID = toks[0];
-            var visible = toks[1]
-            var portlet = $(".column")
-                .find('#' + portletID)
-                .appendTo($('#' + colid));
-            if (visible === 'false') {
-                portlet.find(".ui-icon").toggleClass("ui-icon-minus");
-                portlet.find(".ui-icon").toggleClass("ui-icon-plus");
-                portlet.find(".portlet-content").hide();
-            }
-        }
-    });
-} */
-
 
 $(document).ready( function () {
     $(".column").sortable({
@@ -123,7 +87,7 @@ $(document).ready( function () {
                        "1 day", "7 days", "1 month", "1 year");
   $formPeriod = $_GET["formPeriod"];
   if (!in_array($formPeriod, $secPeriods)) {
-    # Set default period - 1h
+    /* Por defecto en una hora*/
     $formPeriod = "3600";
   }
 ?>
@@ -149,7 +113,7 @@ $(document).ready( function () {
 </form>
 <script>
 var javascript_countdown = function () {
-	var time_left = 60; //number of seconds for countdown
+	var time_left = 60; //Número de segundo para el contador
 	var output_element_id = 'javascript_countdown_time';
 	var keep_counting = 1;
 	var no_time_left_message = 'No time left for JavaScript countdown!';
@@ -214,7 +178,7 @@ var javascript_countdown = function () {
 	};
 }();
  
-//time to countdown in seconds, and element ID
+//Tiempo para el contador en segundos, y el elemento ID
 javascript_countdown.init(180, 'javascript_countdown_time');
 </script>
 <hr>

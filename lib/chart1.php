@@ -1,4 +1,15 @@
 <?php
+/* @(#) $Id: chart1.php,v 0.1 2015/01/05 19:37:26 */
+
+/* Autor: Jorge Alzate
+ * email: jrglzt@gmail.com
+ * 
+ *
+ * This program is a free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public
+ * License (version 3) as published by the FSF - Free Software
+ * Foundation
+ */
   include("settings.inc");
 
   $secPeriods = array("1800", "3600", "10800", "43200",
@@ -7,9 +18,10 @@
 			"1 day", "7 days", "1 month", "1 year");
   $formPeriod = $_GET["formPeriod"];
   if (!in_array($formPeriod, $secPeriods)) {
-    # Set default period - 1h
+    /* Por defecto en una hora*/
     $formPeriod = "3600"; 
   }
+  /*Calculando períodos de tiempo*/
   $timeNow = time();
   $timePast = $timeNow - $formPeriod;
   mysql_connect($dbHost,$dbUser, $dbPass);
@@ -19,12 +31,9 @@
   $dbResult = mysql_query($dbQuery);
   while ($row = mysql_fetch_assoc($dbResult)) 
   {
-    //   { label: "Series1",  data: 10}
-$results[] = array('label'=>$row['description'],'data'=>$row['count']);
-	//echo '<pre>';
-	//	print_r($results);
-	//echo '</pre>'; 
-//   $results[] = array('Label:' . '"' . $row['description'] . '"', "data:" . $row['count']);
+ 	/*construyendo arreglo para enviar a gráfico JavaScript*/
+	$results[] = array('label'=>$row['description'],'data'=>$row['count']);
+	
   }
 
   mysql_close();
@@ -65,7 +74,7 @@ $results[] = array('label'=>$row['description'],'data'=>$row['count']);
 				}
 			});
 
-		//$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+		
 		
 	});
        

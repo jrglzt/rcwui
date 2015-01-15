@@ -1,7 +1,17 @@
 <?php
-	//Start session
-	session_start();	
-	//Unset the variables stored in session
+/* @autor Jorge Alzate <jrglzt@gmail.com>
+ *  @version 0.1
+ *
+ */
+
+/*This program is a free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public
+ * License (version 3) as published by the FSF - Free Software
+ * Foundation
+ */
+
+  
+	session_start();
 	unset($_SESSION['SESS_USER']);
 	unset($_SESSION['SESS_PASS']);
 	include("site/headerdashboard.html");
@@ -11,9 +21,10 @@
 <table width="309" border="0" align="center" cellpadding="2" cellspacing="5">
   <tr>
     <td colspan="2">
-		<!--the code bellow is used to display the message of the input validation-->
+
 		 <?php
-			if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
+			<?php
+			if(isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0) {
 			echo '<ul class="err">';
 			foreach($_SESSION['ERRMSG_ARR'] as $msg) {
 				echo '<li>',$msg,'</li>'; 
@@ -39,6 +50,7 @@
 </table>
 </form>
 <?php
+		
 	include("site/footerdashboard.html");
 ?>
 

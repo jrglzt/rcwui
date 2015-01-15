@@ -37,7 +37,7 @@ if(isset($_POST['agentname']))
 	);
 	$pipes = array();
 	
-	//Limpiar archivo creación de agente.
+	/*Limpiar archivo para la creación de agente.*/
 	$process = proc_open("cat /dev/null > /var/ossec/newagent.tmp", $descr, $pipes);
 	if (is_resource($process)) {
 	    while ($f = fgets($pipes[1])) {
@@ -50,7 +50,7 @@ if(isset($_POST['agentname']))
 	    fclose($pipes[2]);
 	    proc_close($process);
 	}
-	//Escribir datos del agente	
+	/*Escribir datos del agente al archivo*/	
 	$pipes = array();
 	$comando = 'echo "'. $ip . ',' . $agent . '" > /var/ossec/newagent.tmp';	
 	$process = proc_open($comando, $descr, $pipes);
@@ -65,7 +65,7 @@ if(isset($_POST['agentname']))
 	    fclose($pipes[2]);
 	    proc_close($process);
 	}
-	//Ejecutar creación agente.
+	/*Ejecutar creación agente a través de la función proc_open invocando manage_agents*/
 	$pipes = array();
 	$process = proc_open("sudo /var/ossec/bin/manage_agents -f /newagent.tmp", $descr, $pipes);
 	if (is_resource($process)) {
@@ -94,7 +94,7 @@ else
 		$idagent = trim($_POST['idagent']);
 		if(strlen($idagent) > 0)
 		   {	
-			//Ejecutar generacion de llave.
+			
 			$descr = array(
 			    0 => array(
 				'pipe',
@@ -111,6 +111,7 @@ else
 			);
 			
 			$pipes = array();
+			/*Ejecutar generación de llave para el agente*/			
 			$comando = "sudo /var/ossec/bin/manage_agents -e " . $idagent;
 			$process = proc_open($comando, $descr, $pipes);
 			if (is_resource($process)) {
@@ -150,6 +151,7 @@ $descr = array(
     )
 );
 $pipes = array();
+/*Listar agentes*/
 $process = proc_open("sudo /var/ossec/bin/manage_agents -l ", $descr, $pipes);
 if (is_resource($process)) {
     while ($f = fgets($pipes[1])) {

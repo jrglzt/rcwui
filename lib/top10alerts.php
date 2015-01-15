@@ -1,4 +1,15 @@
 <?
+/* @(#) $Id: top10alerts.php,v 0.1 2014/12/29 16:14:21 */
+
+/* Autor: Jorge Alzate
+ * email: jrglzt@gmail.com
+ * 
+ *
+ * This program is a free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public
+ * License (version 3) as published by the FSF - Free Software
+ * Foundation
+ */
   include("settings.inc");
 
   $secPeriods = array("1800", "3600", "10800", "43200",
@@ -7,9 +18,10 @@
 			"1 day", "7 days", "1 month", "1 year");
   $formPeriod = $_GET["formPeriod"];
   if (!in_array($formPeriod, $secPeriods)) {
-    # Set default period - 1h
+   /* Por defecto en una hora*/
     $formPeriod = "3600"; 
   }
+/*Calculando períodos de tiempo*/
   $timeNow = time();
   $timePast = $timeNow - $formPeriod;
   mysql_connect($dbHost,$dbUser, $dbPass);

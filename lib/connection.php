@@ -1,4 +1,8 @@
 <?php
+/*
+ *Variables auxiliares de conexión a mysql
+ *
+ */
 $mysql_hostname = "localhost";
 $mysql_user = "root";
 $mysql_password = "35060";

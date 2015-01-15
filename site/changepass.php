@@ -11,17 +11,24 @@
  * Foundation
  */
 
-$nwp="";
-$nwp2=""; 
-$mens="";      
-$mysql_hostname = "localhost";
-$mysql_user = "root";
-$mysql_password = "35060";
-$mysql_database = "bdrcwui";
-$prefix = "";
+/*
+ *Variables auxiliares de conexión a mysql
+ *
+ */
+$nwp="";/*almacena primera contraseña para comparación*/
+$nwp2=""; /*almacena segunda contraseña para comparación*/
+$mens=""; /*Variable que almacena el mensaje de resultado de operación*/     
+$mysql_hostname = "localhost";/*Parametro para conectividad*/  
+$mysql_user = "root";/*Parametro para conectividad*/  
+$mysql_password = "35060";/*Parametro para conectividad*/  
+$mysql_database = "bdrcwui";/*Parametro para conectividad*/  
+
 $bd = mysql_connect($mysql_hostname, $mysql_user, $mysql_password) or die("Could not connect database");
 mysql_select_db($mysql_database, $bd) or die("Could not select database");
-//Función para evitar SQL Injection
+/*Función para evitar SQL Injection
+ *@param $str cadena a evaluar
+ *@return String	
+ */
 function clean($str) {
 		$str = @trim($str);
 		if(get_magic_quotes_gpc()) {
@@ -33,7 +40,7 @@ if(isset($_POST['newpass']))
 {    
    $nwp = trim($_POST['newpass']);
    $nwp2 = trim($_POST['newpass2']);
-   //echo $nwp; 
+  
    if(strlen($nwp) > 0 && strlen($nwp2) > 0)
    {	
 	   if(strcmp($nwp,$nwp2) != 0)
